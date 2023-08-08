@@ -2,7 +2,7 @@
 # Blog50 | CS50x Final Project
 
 #### Video Demo: <https://youtu.be/FRiOKu7olwM>
-![YouTube Video](https://youtu.be/FRiOKu7olwM)
+[![YouTube Video](https://github.com/hanibashir/blog50/blob/main/static/blog50-thumbnail.png)](https://youtu.be/FRiOKu7olwM)
 
 # Final-Project
 
