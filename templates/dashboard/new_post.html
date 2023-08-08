@@ -1,0 +1,66 @@
+{% extends "dashboard/layout.html" %}
+
+{% block title %}
+New Post
+{% endblock %}
+
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form action="/dashboard/new_post" method="post" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="title">
+                        <h5>Title</h5>
+                    </label>
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Post Title">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="body">
+                        <h5>Content</h5>
+                    </label>
+                    <textarea class="form-control" name="content" id="body" rows="3"
+                        placeholder="Post Content"></textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="cat">Category</label>
+                    <select class="form-control" id="cat" name="cat">
+                        <option selected disabled value="0">Choose Category</option>
+                        {% for cat in cats %}
+                        <option value="{{ cat['id'] }}">{{ cat['title'] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="img">
+                        <h5>Image</h5>
+                    </label>
+                    <input type="file" id="img" name="img" accept="image/*">
+                </div>
+
+                <div class="form-group">
+                    <label for="publish">
+                        <h5>Status</h5>
+                    </label>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="checkbox" value="1" id="publish" name="publish">
+                        <label class="form-check-label" for="publish"> Publish </label>
+                    </div>
+                </div>
+
+
+                <div class="text-center">
+                    <button class="btn btn-primary mb-3" type="submit">Save</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

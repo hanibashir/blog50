@@ -1,0 +1,61 @@
+{% extends "dashboard/layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <form action="/user/profile" method="post" enctype="multipart/form-data">
+                <div class="form-group mb-3">
+                    <label for="first_name"><h5>First Name</h5></label>
+                    <input required type="text" class="form-control" value="{{ user['first_name'] }}" name="first_name" id="first_name" placeholder="First Name">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="last_name"><h5>Last Name</h5></label>
+                    <input required type="text" class="form-control" value="{{ user['last_name'] }}" name="last_name" id="last_name" placeholder="Last Name">
+                </div>
+                <div class="mb-3">
+                    <label for="email"><h5>E-Mail</h5></label>
+                    <input disabled required class="form-control" value="{{ user['email'] }}" id="email" name="email" placeholder="name@example.com" type="email">
+                </div>
+                <div class="mb-3">
+                    <label for="old_password"><h5>Old Password</h5></label>
+                    <input autocomplate="off" class="form-control" id="old_password" name="old_password" placeholder="Enter your old Password" type="password">
+                </div>
+                <div class="mb-3">
+                    <label for="new_password"><h5>New Password</h5></label>
+                    <input autocomplate="off" class="form-control" id="new_password" name="new_password" placeholder="Enter your new Password" type="password">
+                </div>
+                <div class="mb-3">
+                    <label for="confirm_new_password"><h5>Confirm New Password</h5></label>
+                    <input autocomplate="off" class="form-control" id="confirm_new_password" name="confirm_new_password" placeholder="Retype your Password" type="password">
+                </div>
+                <div class="mb-3">
+                    <label for="about"><h5>About</h5></label>
+                    <textarea class="form-control" id="about" name="about">{{ user['about'] }}</textarea>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="img">
+                        <h5>Change Image</h5>
+                    </label>
+                    <input type="hidden" name="old_img_url" value="{{ user['img_url'] }}">
+                    <input type="file" id="img" name="img" accept="image/*">
+                    <img class="rounded border" src="../../{{ user['img_url'] }}" width="90" height="90">
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary mb-3" type="submit">Update</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

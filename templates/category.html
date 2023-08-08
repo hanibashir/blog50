@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ posts_cat['title'] }}
+{% endblock %}
+
+{% block navbar %}
+
+<ul class="navbar-nav me-auto mt-2">
+    {% for cat in cats %}
+    <li class="nav-item">
+        <a class="nav-link" href="/category?id={{ cat['id'] }}&title={{ cat['slug'] }}">{{ cat['title'] }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% block main %}
+
+<div class="row">
+    {% if not posts %}
+    <h6 class="mb-3 text-muted text-center">No post to show</h6>
+    {% endif %}
+    {% for post in posts %}
+    {% if post['published'] %}
+    <div class="card mx-1 p-1" style="width: 18rem;">
+        <img class="card-img-top" src="../{{ post['img_url'] }}" alt="Card image cap" height="200">
+        <div class="card-body">
+            <h5 class="card-title">{{ post['title'] }}</h5>
+            <h6 card-subtitle mb-2 text-muted>{{ posts_cat['title'] }}</h6>
+            <p class="card-text">{{ post['content'][:150] }}...</p>
+            <a href="/post?id={{ post['id'] }}" class="btn btn-primary">Read More</a>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}

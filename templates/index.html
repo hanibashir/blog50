@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block navbar %}
+
+<ul class="navbar-nav me-auto mt-2">
+    {% for cat in cats %}
+    <li class="nav-item">
+        <a class="nav-link" href="/category?id={{ cat['id'] }}&title={{ cat['slug'] }}">{{ cat['title'] }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul class=flashes>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+
+{% block main %}
+
+<div class="row">
+    {% if not posts %}
+    <h6 class="mb-3 text-muted text-center">No post to show</h6>
+    {% endif %}
+    {% for post in posts %}
+    {% if post['published']%}
+    <div class="card mx-1 p-1" style="width: 18rem;">
+        <img class="card-img-top" src="../{{ post['thumbnail'] }}" alt="Card image cap" height="200">
+        <div class="card-body">
+            <h5 class="card-title">{{ post['title'] }}</h5>
+            <h6 card-subtitle mb-2 text-muted><a
+                    href="/category?id={{ post['cat_id'] }}&title={{ post['cat_slug'] }}">{{
+                    post['category'] }}</a>
+            </h6>
+            <p class="card-text">{{ post['content'][:150] }}...</p>
+            <a href="/post?id={{ post['post_id'] }}&title={{ post['post_slug'] }}" class="btn btn-primary">Read More</a>
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+
+{% endblock %}
