@@ -109,4 +109,4 @@ My final project in CS50 is a blog with a dashboard. Users must register or logi
 
 * Install project dependencies by running `pip install -r requirements.txt`
 
-* Run `flask run` and visit the link that appears on the command line.
+* Run `flask run` or `python -m flask run` and visit http://127.0.0.1:5000 or the link that appears on the command line.
